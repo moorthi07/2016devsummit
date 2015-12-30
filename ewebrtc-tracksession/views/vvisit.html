@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Enhanced WebRTC Demo</title>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src='//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js'></script>
+  <script src='//oss.maxcdn.com/respond/1.4.2/respond.min.js'></script>
+  <![endif]-->
+  
+  <!-- Latest compiled and minified CSS -->
+  <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+  
+  <!-- Optional theme -->
+  <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css'>
+</head>
+
+  <body class='container' onload='checkBrowser()' onunload='logout()' >
+
+    <nav class='navbar navbar-default'>
+      <div class='container-fluid'>
+        <div class='navbar-header'>
+          <h2><span class='glyphicon glyphicon-grain'></span>TeleMedicine Services</h2>
+        </div>
+      	<div class='navbar-text navbar-right' id='divWelcome'>
+          <span id='spnWelcome'>Welcome! </span>
+        </div>	
+      </div>
+    </nav>
+
+    <div class='panel panel-primary' id='divWaiting'>
+      <div class='panel-heading'><h3 class='panel-title' id='h3Waiting'>Waiting</h3></div>
+      <div class='panel-body col-md-offset-4'>
+        <p id='pWaiting'>Waiting for your provider to call you...</p>
+        <div id='btnAnswer' hidden>
+          <button class='btn btn-primary' onclick='answerCall()'>
+          	<span class='glyphicon glyphicon-earphone'></span>
+          	Answer
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class='panel panel-primary' id='divCall' hidden>
+      <div class='panel-heading'><h3 class='panel-title'>Phone</h3></div>
+      <div class='panel-body'>
+        <div id='divControls' hidden>
+	        <button class='btn btn-info' onclick='mute()'>Mute</button>
+	        <button class='btn btn-info' onclick='unmute()'>Unmute</button>
+	        <button class='btn btn-warning' onclick='hold()'>Hold</button>
+	        <button class='btn btn-warning' onclick='resume()'>Resume</button>
+	        <button class='btn btn-danger' onclick='hangup()'>Hang up</button>
+        </div>
+        <hr/>
+        <video id='videoRemote' class='col-xs-8'></video>
+        <video id='videoLocal' class='col-xs-4'></video>
+      </div>
+    </div>
+
+    <div class='panel panel-error' id='divUnsupported' hidden>
+      <div class='panel-heading'><h3 class='panel-title'>Unsupported Browser</h3></div>
+      <div class='panel-body col-md-offset-4'>
+        <p>AT&T Enhanced WebRTC is supported on Chrome browser v46 and later.</p>
+        <p>Please install Chrome from <a href='https://www.google.com/chrome'>here</a>.</p>
+      </div>
+
+    </div>
+
+    <div class="footer">      
+      <span class='text-info' id='spnStatus'>Waiting for Incoming Call...</span>      
+    </div>
+
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+
+    <script src='js/ewebrtc-sdk.min.js'></script>
+
+    <script type='text/javascript'>
+
+
+		function checkBrowser() {
+      // Check if Browser supports Enhanced WebRTC or not
+      //
+      if( 'Not Supported' === ATT.browser.hasWebRTC() ) {
+        // Show Unsupported Browser view
+        //
+        document.getElementById('divUnsupported').hidden = false;
+
+        // Hide all functional panels
+        document.getElementById('divCall').hidden = true;
+        document.getElementById('divWaiting').hidden = true;
+
+        // Update status
+        //
+        updateStatus( 'Unsupported browser. Chrome v46 or later required.' );
+			} else {
+				getConfig();
+			}
+		}
+
+
+    // Error handler function
+    // Updates status label in this DevLab
+    //
+    function updateStatus(status) {
+
+      if( status.ErrorMessage ) {
+
+        // status is a structured error object
+        // show after extracting its fields
+        //
+        spnStatus.textContent = 'Error - Message: ' + status.ErrorMessage + ' Code: ' + status.ErrorCode;
+
+      } else {
+
+        // We assume status is a simple String
+        //
+        spnStatus.textContent = status;
+      }
+
+    }
+
+    function onSetupFailed(error) {
+      updateStatus( error );
+    }
+
+    var urlConfig = location.origin + '/config';
+    var config;
+
+    function getConfig() {
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', urlConfig );
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+          if (xhr.status == 200) {
+            config = JSON.parse(xhr.responseText);
+            createAccessToken();
+          } else {
+            onSetupFailed(xhr.responseText);
+          }
+        }
+      };
+      xhr.send();
+    }
+
+    var respToken;
+
+    function createAccessToken() {
+
+      updateStatus('Creating AccessToken...');
+
+      // Create AccessToken
+      //
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', config.app_token_url );
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+          if (xhr.status == 200) {
+            respToken = JSON.parse(xhr.responseText);
+            setupPhone();
+          } else {
+            onSetupFailed(xhr.responseText);
+          }
+        }
+      };
+      xhr.send(JSON.stringify({app_scope: 'ACCOUNT_ID'}));
+
+    }
+
+
+		function getQueryParam(qParam) { 
+			var params = window.location.search.substr(1).split('&');
+		 
+			for (var i = 0; i < params.length; i++) {
+				var p=params[i].split('=');
+				if (p[0] == qParam) {
+					return decodeURIComponent(p[1]);
+				}
+			}
+			return undefined;
+		}
+
+		var username = getQueryParam( 'username' );
+		console.log('Got username: ' + username);
+
+    var phone;
+
+    function setupPhone() {
+
+      updateStatus( 'Getting Phone object...');
+      phone = ATT.rtc.Phone.getPhone();
+
+      updateStatus( 'Setting up Event Handlers...');
+      setupEventHandlers();
+
+      updateStatus( 'Associating AccessToken...');
+
+      // Associate token
+      //
+      phone.associateAccessToken({
+          userId: username,
+          token: respToken.access_token,
+          success: loginPhone,
+          error: onSetupFailed
+      }); 
+
+    }
+
+  	function setupEventHandlers() {
+      phone.on( 'error', updateStatus);
+
+      phone.on( 'gateway:unreachable', onGatewayUnreachable);
+
+      phone.on( 'session:ready', onSessionReady);
+      phone.on( 'session:disconnected', onSessionDisconnected);
+
+      phone.on( 'call:incoming', onCallIncoming);
+
+      phone.on( 'call:connecting', onCallConnecting);
+      phone.on( 'call:connected', onCallConnected);
+
+      phone.on( 'call:disconnecting', onCallDisconnecting);
+      phone.on( 'call:disconnected', onCallDisconnected);
+    }
+
+    function loginPhone() {
+      phone.login({token: respToken.access_token});
+    }
+
+    function logout() {
+      if(phone) {
+        phone.logout();
+				updateStatus('Logging out...');
+			} else {
+				updateStatus('Error initializing Phone. Please contact Telemedicine Support.');
+			}
+      showbackHomeView();
+    }
+
+    function onSessionReady() {
+      updateStatus('Phone is ready');
+    }
+
+    function onSessionDisconnected() {
+      updateStatus('Phone disconnected');
+		}
+
+		function showbackHomeView() {
+      
+      document.getElementById('h3Waiting').innerHTML = 'Thank You!';
+      document.getElementById('pWaiting').innerHTML = 'Thank you for consulting with your Doctor. Please let us know how we can help you further.';
+      document.getElementById('divWaiting').hidden = false;
+    }
+  
+    function onGatewayUnreachable() {
+      updateStatus('Gateway unreachable. Try later.');
+    }
+
+    function onCallIncoming() {
+      updateStatus('Call incoming...');
+      document.getElementById('pWaiting').innerHTML = 'Incoming call from your doctor. Please answer.';
+      document.getElementById('btnAnswer').hidden = false;         
+    }
+
+    function answerCall() {
+      updateStatus('Answering call...');
+      document.getElementById('divCall').hidden = false;
+      document.getElementById('divWaiting').hidden = true;
+      phone.answer({
+        mediaType: 'video',
+        localMedia: document.getElementById('videoLocal'),
+        remoteMedia: document.getElementById('videoRemote')
+      }); 
+    }
+
+    function onCallConnecting() {
+      updateStatus('Call connecting...');
+    }
+
+    function onCallConnected() {
+      updateStatus('Call connected');
+      document.getElementById('divControls').hidden = false;
+    }
+  
+    function onCallDisconnecting() {
+      updateStatus('Call disconnecting...');
+      document.getElementById('divControls').hidden = true;
+    }
+
+    function onCallDisconnected() {
+      updateStatus('Call disconnected');
+
+      document.getElementById('divCall').hidden = true;
+      document.getElementById('btnAnswer').hidden = true;
+
+      updateStatus('Logging out...');
+      logout();
+    }
+
+    function mute() {
+      phone.mute();            
+    }
+
+    function unmute() {
+      phone.unmute();            
+    }
+
+    function hold() {
+      phone.hold();            
+    }
+
+    function resume() {
+      phone.resume();            
+    }
+
+    function hangup() {
+      phone.hangup();            
+    }
+
+    </script>
+
+</body>
+</html>

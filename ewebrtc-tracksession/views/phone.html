@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Enhanced WebRTC Demo</title>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src='//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js'></script>
+  <script src='//oss.maxcdn.com/respond/1.4.2/respond.min.js'></script>
+  <![endif]-->
+  
+  <!-- Latest compiled and minified CSS -->
+  <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+  
+  <!-- Optional theme -->
+  <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css'>
+</head>
+
+  <body class='container' onload='getConfig()' onunload='logout()' >
+
+    <nav class='navbar navbar-default'>
+      <div class='container-fluid'>
+        <div class='navbar-header'>
+          <h2><span class='glyphicon glyphicon-grain'></span>TeleMedicine Services</h2>
+        </div>
+      	<div class='navbar-text navbar-right' id='divWelcome' hidden>
+          <span id='spnWelcome'>Welcome </span>
+          <a class='btn btn-success' onclick='logout()'>
+          	<span class='glyphicon glyphicon-log-out'></span>
+          	Logout
+          </a>
+        </div>	
+      </div>
+    </nav>
+
+    <div class='panel panel-primary' id='divLogin'>
+      <div class='panel-heading'><h3 class='panel-title'>Login</h3></div>
+      <div class='panel-body col-md-offset-4'>
+        <input type='text' id='txtUsername' onkeypress='return submitForm(this, event);' placeholder='username'/>@<span id='spnDomain'>???</span>
+        <p/>
+        <input type='password' id='pswPassword' onkeypress='return submitForm(this, event);' placeholder='password'/>
+        <p/>
+        <button class='btn btn-primary' onclick='loginUser()'>
+        	<span class='glyphicon glyphicon-log-in'></span>
+        	Login
+        </button>
+      </div>
+    </div>
+
+    <div class='panel panel-success' id='divSchedule' hidden>
+      <div class='panel-heading'><h3 class='panel-title'>Patient Schedule</h3></div>
+      
+      <table id='tableSchedule' class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th>No.</th>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Appointment</th>
+          <th>Contact</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- populate this in XHR GET /appointments -->
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class='panel panel-error' id='divUnsupported' hidden>
+      <div class='panel-heading'><h3 class='panel-title'>Unsupported Browser</h3></div>
+      <div class='panel-body col-md-offset-4'>
+        <p>AT&T Enhanced WebRTC is supported on Chrome browser v46 and later.</p>
+        <p>Please install Chrome from <a href='https://www.google.com/chrome'>here</a>.</p>
+      </div>
+      
+    </div>
+
+
+    <div class="footer">      
+      <span class='text-info' id='spnStatus'>Waiting for Login...</span>      
+    </div>
+
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+
+    <script src='js/ewebrtc-sdk.min.js'></script>
+
+    <script type='text/javascript'>
+
+
+			// Check if Browser supports Enhanced WebRTC or not
+			//
+      if( 'Not Supported' === ATT.browser.hasWebRTC() ) {
+        // Show Unsupported Browser view
+        //
+        document.getElementById('divUnsupported').hidden = false;
+
+        // Hide all functional panels
+        document.getElementById('divWelcome').hidden = true;
+        document.getElementById('divLogin').hidden = true;
+        document.getElementById('divSchedule').hidden = true;
+
+				// Update status
+				//
+				updateStatus( 'Unsupported browser. Chrome v46 or later required.' );
+			}
+
+    function submitForm( field, event ) {
+      if(event.keyCode == 13) {
+        loginUser();
+      }
+    }
+
+    // Error handler function
+    // Updates status label in this DevLab
+    //
+    function updateStatus(status) {
+
+      if( status.ErrorMessage ) {
+
+        // status is a structured error object
+        // show after extracting its fields
+        //
+        spnStatus.textContent = 'Error - Message: ' + status.ErrorMessage + ' Code: ' + status.ErrorCode;
+
+      } else {
+
+        // We assume status is a simple String
+        //
+
+        spnStatus.textContent = status;
+      }
+
+    }
+
+    function onSetupFailed(error) {
+      // Update status
+      //
+      updateStatus( error );
+    }
+
+    function loginUser() {
+
+      var username = document.getElementById('txtUsername').value;
+      var password = document.getElementById('pswPassword').value;
+
+      if( username && password ) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/providers/' + username );
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+              var provider = JSON.parse(xhr.responseText);
+              if(provider.username) {
+                showScheduleView();
+                createAccessToken();
+                var msgWelcome = 'Welcome, ' + provider.role + ' ' + provider.lastName + '!';
+                document.getElementById('spnWelcome').textContent = msgWelcome;
+                updateStatus('Logged in');
+              } else {
+                updateStatus('Username not recognized: ' + username);
+              }
+            }
+          }
+        }
+        xhr.send();
+
+      } else {
+
+        updateStatus( 'Username and Password are required' );
+      }
+
+    }
+
+    var urlConfig = location.origin + '/config';
+    var config;
+
+    function getConfig() {
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', urlConfig );
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+          if (xhr.status == 200) {
+            config = JSON.parse(xhr.responseText);
+            spnDomain.textContent = config.ewebrtc_domain;
+          } else {
+            onSetupFailed(xhr.responseText);
+          }
+        }
+      };
+      xhr.send();
+    }
+
+    var respToken;
+
+    function createAccessToken() {
+
+      updateStatus('Creating AccessToken...');
+
+      // Create AccessToken
+      //
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', config.app_token_url );
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+          if (xhr.status == 200) {
+            respToken = JSON.parse(xhr.responseText);
+            setupPhone();
+          } else {
+            onSetupFailed(xhr.responseText);
+          }
+        }
+      };
+      xhr.send(JSON.stringify({app_scope: 'ACCOUNT_ID'}));
+
+    }
+
+    var phone;
+
+    function setupPhone() {
+
+      updateStatus( 'Getting Phone object...');
+      phone = ATT.rtc.Phone.getPhone();
+
+      updateStatus( 'Setting up Event Handlers...');
+      setupEventHandlers();
+
+      updateStatus( 'Associating AccessToken...');
+
+      // Associate token
+      //
+      phone.associateAccessToken({
+          userId: document.getElementById('txtUsername').value,
+          token: respToken.access_token,
+          success: loginPhone,
+          error: onSetupFailed
+      }); 
+
+    }
+
+  	function setupEventHandlers() {
+      phone.on( 'error', updateStatus);
+
+      phone.on( 'gateway:unreachable', onGatewayUnreachable);
+
+      phone.on( 'session:ready', onSessionReady);
+      phone.on( 'session:disconnected', onSessionDisconnected);
+
+    }
+
+    function loginPhone() {
+      phone.login({token: respToken.access_token});
+    }
+
+    function logout() {
+			if(phone) {
+				phone.logout();
+			}
+			updateStatus('Logging out...');
+			showbackLoginView();
+    }
+
+    function onSessionReady(data) {
+      updateStatus('Phone is ready');
+      showScheduleView();
+    }
+
+    function onSessionDisconnected() {
+      updateStatus('Phone disconnected. Logged out.');
+    }
+  
+    function onGatewayUnreachable() {
+      updateStatus('Gateway unreachable. Try later.');
+    }
+
+    function showScheduleView() {
+
+			// Show Welcome
+			//
+			document.getElementById('divWelcome').hidden = false;
+
+			// Hide Unsupported Browser view
+			//
+			document.getElementById('divUnsupported').hidden = true;
+
+			// Hide Login
+			//
+			document.getElementById('divLogin').hidden = true;
+
+			// Show Schedule
+			//
+			document.getElementById('divSchedule').hidden = false;
+			
+			// Populate schedule table
+			//
+			populateScheduleTable();
+
+    }
+
+    function populateScheduleTable() {
+
+      var elTable = document.getElementById('tableSchedule');
+      var rowCount = elTable.rows.length;
+      while(--rowCount) elTable.deleteRow(rowCount);
+      
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/appointments' );
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+          if (xhr.status == 200) {
+            var appointments = JSON.parse(xhr.responseText);
+            if(appointments.length == 0) {
+              updateStatus('No appointments today. Take it easy!');
+            } else {
+              
+              for(var i=0; i<appointments.length; i++) {
+                var tRow = elTable.insertRow(i+1);
+                var tCell = tRow.insertCell(0);
+                tCell.innerHTML = i+1;
+                tCell = tRow.insertCell(1);
+                tCell.innerHTML = appointments[i].firstName;
+                tCell = tRow.insertCell(2);
+                tCell.innerHTML = appointments[i].lastName;
+                tCell = tRow.insertCell(3);
+                tCell.innerHTML = appointments[i].at;
+                tCell = tRow.insertCell(4);
+
+                if(appointments[i].contacts.tel) {
+                  tCell.innerHTML = "<span class='glyphicon glyphicon-phone-alt'></span> Patient's Phone: " + appointments[i].contacts.tel;
+                }
+
+                if(appointments[i].contacts.accountId) {
+                  tCell.innerHTML += "<br/><span class='glyphicon glyphicon-phone'></span> Patient's Account Id: " + appointments[i].contacts.accountId;
+                }
+
+                if(appointments[i].contacts.email) {
+                  tCell.innerHTML += "<br/><span class='glyphicon glyphicon-envelope'></span> Email Appointment to: " + appointments[i].contacts.email;
+                }
+                
+              }
+            }
+          } else {
+            updateStatus('Schedule retrieval failure: ' + xhr.responseText);
+          }
+        }
+      };
+
+      xhr.send();
+
+    }
+
+    function showbackLoginView() {
+      // Clear username, password inputs
+      //
+      document.getElementById('txtUsername').value = '';
+      document.getElementById('pswPassword').value = '';
+      // Hide Welcome
+      //
+      document.getElementById('divWelcome').hidden = true;
+      // Hide Schedule
+      //
+      document.getElementById('divSchedule').hidden = true;
+      // Show Login
+      //
+      document.getElementById('divLogin').hidden = false;
+
+    }
+
+    </script>
+
+</body>
+</html>

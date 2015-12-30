@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Enhanced WebRTC Demo</title>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src='//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js'></script>
+  <script src='//oss.maxcdn.com/respond/1.4.2/respond.min.js'></script>
+  <![endif]-->
+  
+  <!-- Latest compiled and minified CSS -->
+  <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+  
+  <!-- Optional theme -->
+  <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css'>
+</head>
+
+  <body class='container'>
+
+    <nav class='navbar navbar-default'>
+      <div class='container-fluid'>
+        <div class='navbar-header'>
+          <h2><span class='glyphicon glyphicon-grain'></span>TeleMedicine Services</h2>
+        </div>
+      </div>
+    </nav>
+
+    <div class='panel panel-danger' id='divWaiting'>
+      <div class='panel-heading'><h3 class='panel-title'>Expired</h3></div>
+      <div class='panel-body col-md-offset-4'>
+        <p>Oops! The web page is not available. There are few possible reasons for this.</p>
+        <ul>
+          <li>This is onetime-use page. You might have already talked to your Provider using this link.</li>
+          <li>You received a link. But did not use in a long time.</li>
+        </ul>
+        <p>You can <a onclick='requestAppt()'>request</a> a new appointment.</p>
+      </div>
+    </div>
+
+
+    <div class="footer">      
+      <span class='text-info' id='spnStatus'>Expired</span>      
+    </div>
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+
+    <script>
+    function requestAppt() {
+      //TODO
+    }
+    </script>
+
+</body>
+</html>

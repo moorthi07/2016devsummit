@@ -1,0 +1,60 @@
+{
+  "name": "att-dhs",
+  "author": [
+    {
+      "name": "AT&T Developer Program",
+      "email": "att.drt.sdk@gmail.com",
+      "url": "https://developer.att.com"
+    }
+  ],
+  "version": "1.0.2",
+  "description": "AT&T Developer Hosted Server Library",
+  "config": {
+    "api_endpoint": "https://api.att.com",
+    "authorize_uri": "/oauth/v4/authorize",
+    "info": {
+      "dhs_platform": "node",
+      "token_uri": "/oauth/v4/token",
+      "e911id_uri": "/emergencyServices/v1/e911Locations",
+      "ewebrtc_uri": "/RTC/v1",
+      "scope_map": {
+        "MOBILE_NUMBER": "WEBRTCMOBILE",
+        "VIRTUAL_NUMBER": "WEBRTC",
+        "ACCOUNT_ID": "WEBRTC",
+        "E911": "EMERGENCYSERVICES"
+      }
+    }
+  },
+  "keywords": [
+    "att",
+    "at&t",
+    "att developer",
+    "at&t developer",
+    "webrtc",
+    "enhanced webrtc",
+    "ewebrtc",
+    "dhs",
+    "developer hosted server"
+  ],
+  "main": "js/att.dhs.js",
+  "files": [
+    "js",
+    "package.json",
+    "README.md"
+  ],
+  "dependencies": {
+    "restify": "^2.8.5"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-jsdoc": "^0.5.8",
+    "grunt-jslint": "^1.1.12",
+    "grunt-mocha-cli": "^1.11.0",
+    "mocha": "^1.21.4",
+    "mocha-sinon": "^1.1.4",
+    "sinon": "^1.14.1",
+    "xunit-file": "0.0.6"
+  }
+}
