@@ -111,7 +111,7 @@ public class RTCService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
 
-        if (intent != null && intent.getExtras() == null) {
+        if (intent == null || intent.getExtras() == null) {
             Intent showTaskIntent = new Intent(
                     getApplicationContext(), TutorialActivity.class
             );
@@ -132,7 +132,7 @@ public class RTCService extends Service {
                     .setContentIntent(contentIntent)
                     .build();
             startForeground(FOREGROUND_SERVICE_NOTIFICATION_ID, notification);
-        } else if(intent.getExtras() != null){
+        } else{
             final Bundle extras = intent.getExtras();
             final String action = extras.getString("ACTION", null);
             phone = Phone.getPhone(getApplicationContext());
