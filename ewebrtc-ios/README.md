@@ -78,16 +78,16 @@ The following example assumes that you are using Xcode.
 
 **Note** : The iOS library for Enhanced WebRTC has been tested on iOS version
 9.0 and higher. The library has been compiled against the ARM64 architecture, so
-and IPhone 5s or newer is required. Running this tutorial app will not work on a
+an IPhone 5s or newer is required. Running this tutorial app will not work on a
 simulator.
 
 The tutorial app has been configured to run as-is, so simply opening the
 TutorialApp.xcworkspace directory in the
-[Github repow](https://github.com/attdevsupport/2016devsummit/tree/master/ewebrtc-ios/TutorialApp)
+[Github repository](https://github.com/attdevsupport/2016devsummit/tree/master/ewebrtc-ios/TutorialApp)
 should be all that is needed to run the app.
 
 By default, the tutorial app is configured to use an example Developer Hosted
-Server already being hosted. However, you may modify the app to hit your own DHS
+Server already being hosted. However, you may modify the app to use your own DHS
 by updating the following two files:
 
 **AppDelegate.swift**
@@ -105,13 +105,13 @@ private let DHS_FQDN = "ENTER_VALUE"
 
 ### Setting up your AppDelegate
 In order to make and receive calls, you must first set up your application
-delegate with the functionality to listen to events. At the top of your
-AppDelegate class, add the following lines:
+delegate with the event listening functionality. At the top of your AppDelegate
+class, add the following lines:
 ```Swift
 private static let SOCKET_FQDN = "ENTER_FQDN"
 private var webrtcListener: WebRTCListener!
 ```
-You will also need to add a method in your AppDelegate class to start polling:
+You will need to add a method in your AppDelegate class to start polling:
 ```Swift
 func startPolling(token: OAuthToken, sessionId: String) {
     self.webrtcListener = WebRTCListener(
@@ -140,8 +140,9 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
     return true
 }
 ```
-You may also look at an example
-[AppDelegate](https://github.com/attdevsupport/2016devsummit/blob/ios/ewebrtc-ios/TutorialApp/TutorialApp/AppDelegate.swift) class.
+An example
+[AppDelegate](https://github.com/attdevsupport/2016devsummit/blob/ios/ewebrtc-ios/TutorialApp/TutorialApp/AppDelegate.swift)
+class is provided.
 
 
 ### Setting up your Phone instance
