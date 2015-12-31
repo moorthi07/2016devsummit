@@ -152,7 +152,6 @@ public class RTCService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        phone.removeEventListener(eventListener);
     }
 
     @Override
