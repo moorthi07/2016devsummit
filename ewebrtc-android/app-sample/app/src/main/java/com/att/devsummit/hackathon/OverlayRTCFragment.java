@@ -32,7 +32,6 @@ public class OverlayRTCFragment extends Fragment {
 
         //context might me null here so check before use
         context = this.getActivity().getApplicationContext();
-
         return controlView;
     }
 

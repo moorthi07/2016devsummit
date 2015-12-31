@@ -10,7 +10,6 @@ public class Info {
     private String apiEnv;
     private String dhsName;
     private String dhsVersion;
-    //private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * @return The dhsPlatform
@@ -123,12 +122,4 @@ public class Info {
     public void setDhsVersion(String dhsVersion) {
         this.dhsVersion = dhsVersion;
     }
-
-    /*public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }*/
 }

@@ -1,0 +1,7 @@
+ewebrtc-android/app-sample/app/build/
+ewebrtc-android/app-sample/.idea/
+ewebrtc-android/app-sample/*.iml
+ewebrtc-android/app-sample/.gradle/
+ewebrtc-android/app-sample/app/app.iml
+ewebrtc-android/app-sample/build/intermediates/dex-cache/cache.xml
+ewebrtc-android/app-sample/local.properties

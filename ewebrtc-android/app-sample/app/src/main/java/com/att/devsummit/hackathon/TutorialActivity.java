@@ -260,8 +260,8 @@ public class TutorialActivity extends AppCompatActivity {
             mediaType = MediaType.AUDIO_VIDEO;
         }
 
-        if( 0 == phone_number.getText().toString().length() ) {
-        Toast.makeText(getApplicationContext(), "Enter a valid callee ",Toast.LENGTH_SHORT).show();
+        if (0 == phone_number.getText().toString().length()) {
+            Toast.makeText(getApplicationContext(), "Enter a valid callee ", Toast.LENGTH_SHORT).show();
             return;
         }
         Intent idCallIntent = new Intent(getApplicationContext(), RTCActivity.class);
