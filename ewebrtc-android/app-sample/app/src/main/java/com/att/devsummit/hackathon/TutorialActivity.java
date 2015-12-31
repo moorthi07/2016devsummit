@@ -258,6 +258,11 @@ public class TutorialActivity extends AppCompatActivity {
         } else {
             mediaType = MediaType.AUDIO_VIDEO;
         }
+
+        if( 0 == phone_number.getText().toString().length() ) {
+        Toast.makeText(getApplicationContext(), "Enter a valid callee ",Toast.LENGTH_SHORT).show();
+            return;
+        }
         Intent idCallIntent = new Intent(getApplicationContext(), RTCActivity.class);
         String validatedPhoneNumber = Utility.validatePhoneNumber(phone_number.getText().toString());
         if (null != validatedPhoneNumber) {

@@ -132,7 +132,7 @@ public class RTCService extends Service {
                     .setContentIntent(contentIntent)
                     .build();
             startForeground(FOREGROUND_SERVICE_NOTIFICATION_ID, notification);
-        } else{
+        } else if(intent.getExtras() != null){
             final Bundle extras = intent.getExtras();
             final String action = extras.getString("ACTION", null);
             phone = Phone.getPhone(getApplicationContext());
