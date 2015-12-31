@@ -69,7 +69,6 @@ should also be configured in 'CORS Domains' section of your Developer Portal
 Account.
 
 For more information on configuring and starting the pre-built Server App, please refer to:
-
 https://github.com/attdevsupport/2016devsummit/tree/master/ewebrtc-ios/node-sample.
 
 ### 3. Xcode
@@ -263,6 +262,6 @@ phone.invitationDelegate = yourInvitationDelegate
 
 2. [Enhanced WebRTC API](https://developer.att.com/enhanced-webrtc)
 
-3. [IOS Sample](https://github.com/attdevsupport/2016devsummit/ewebrtc-IOS/TutorialApp/)
+3. [IOS Sample](https://github.com/attdevsupport/2016devsummit/tree/master/ewebrtc-ios/TutorialApp)
 
 4. [JavaScript SDK](https://developer.att.com/enhanced-webrtc/sdk)
