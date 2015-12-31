@@ -3,3 +3,7 @@
 *.xcuserdata
 *.xcbkptlist
 xcuserdata/
+
+# vim
+*.swp
+*.swo
