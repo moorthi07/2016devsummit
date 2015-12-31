@@ -1,0 +1,129 @@
+{
+  "name": "att.webrtc.sample",
+  "version": "2.0.0-beta",
+  "description": "Enhanced WebRTC Sample Application built with AT&T Enhanced WebRTC JS SDK",
+  "homepage": "https://developer.att.com",
+  "keywords": [
+    "Enhanced WebRTC",
+    "AT&T"
+  ],
+  "license": "AT&T. Uses 3rd party libraries. See 3P-LICENSES.txt for attribution",
+  "author": "AT&T Developer Program, DRT/LTA",
+  "private": true,
+  "files": [
+    "sample.cert",
+    "sample.key",
+    "README.md",
+    "RELEASE.md",
+    "3P-LICENSES.txt",
+    "lib",
+    "fresh-start.sh"
+  ],
+  "scripts": {
+    "start": "node app.js sandbox"
+  },
+  "engines": {
+    "node": "0.11.*"
+  },
+  "http_port": 9000,
+  "https_port": 9001,
+  "cert_file": "sample.cert",
+  "key_file": "sample.key",
+  "logs_dir": "logs",
+  "cors_domains": [
+    "your.test.com:9001",
+    "*.prod.com:9001",
+    "*.sandbox.myapp.com:9001",
+    "0.0.0.0:9001",
+    "localhost",
+    "localhost:9001",
+    "127.0.0.1:9001",
+    "192.168.1.66"
+  ],
+"default_api_env": "sandbox",
+  "sandbox": {
+    "app_key": "tur1otrgt6vuwmn1u3acpbneefrz688m",
+    "app_secret": "gsgnomebtw2coxx13fnlc7qn79k5xdic",
+    "oauth_callback": "https://127.0.0.1:9001/oauth/callback",
+    "app_token_url": "https://127.0.0.1:9001/tokens",
+    "app_e911id_url": "https://127.0.0.1:9001/e911ids",
+    "virtual_numbers_pool": [
+      "Please contact your AT&T Representative for a Virtual Number"
+    ],
+    "ewebrtc_domain": "attwebrtc.com"
+  },
+  "prod": {
+    "app_key": "YourAppKey",
+    "app_secret": "YourAppSecret",
+    "oauth_callback": "https://127.0.0.1:9001/oauth/callback",
+    "app_token_url": "https://127.0.0.1:9001/tokens",
+    "app_e911id_url": "https://127.0.0.1:9001/e911ids",
+    "virtual_numbers_pool": [
+      "11231231234",
+      "11231231234"
+    ],
+    "ewebrtc_domain": "yourdomain.com"
+  },
+  "test": {
+    "api_endpoint": "https://api-stage.mars.bf.sl.attcompute.com",
+    "ewebrtc_uri": "/RTC/v1",
+    "app_key": "YourAppKey",
+    "app_secret": "YourAppSecret",
+    "oauth_callback": "https://localhost:9001/oauth/callback",
+    "virtual_numbers_pool": [
+      "11231231234",
+      "11231231234"
+    ],
+    "ewebrtc_domain": "yourdomain.com"
+  },
+  "preprod": {
+    "api_endpoint": "https://api-uat.mars.bf.sl.attcompute.com",
+    "ewebrtc_uri": "/RTC/v1",
+    "app_key": "YourAppKey",
+    "app_secret": "YourAppSecret",
+    "oauth_callback": "https://localhost:9001/oauth/callback",
+    "virtual_numbers_pool": [
+      "11231231234",
+      "11231231234"
+    ],
+    "ewebrtc_domain": "yourdomain.com"
+  },
+  "ams": {
+    "api_endpoint": "http://wdev.code-api-att.com:8080",
+    "ewebrtc_uri": "",
+    "app_key": "YourAppKey",
+    "app_secret": "YourAppSecret",
+    "oauth_callback": "https://localhost:9001/oauth/callback",
+    "virtual_numbers_pool": [
+      "11231231234",
+      "11231231234"
+    ],
+    "ewebrtc_domain": "yourdomain.com"
+  },
+  "mock": {
+    "api_endpoint": "can-be-anything",
+    "ewebrtc_uri": "something",
+    "app_key": "YourAppKey",
+    "app_secret": "YourAppSecret",
+    "oauth_callback": "https://localhost:9001/oauth/callback",
+    "virtual_numbers_pool": [
+      "11231231234",
+      "11231231234"
+    ],
+    "ewebrtc_domain": "yourdomain.com"
+  },
+  "dependencies": {
+    "att-dhs": "^1.0.0",
+    "body-parser": "~1.0.0",
+    "express": "~4.2.0",
+    "hjs": "~0.0.6",
+    "restify": "^2.8.5",
+    "static-favicon": "~1.0.0",
+    "ws": "^0.8.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-docco": "^0.3.3",
+    "grunt-jslint": "^1.1.12"
+  }
+}
