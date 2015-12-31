@@ -13,6 +13,7 @@ class VideoViewController: UIViewController, PhoneCallDelegate {
     @IBOutlet weak var remoteView: RTCEAGLVideoViewWrapper!
     @IBOutlet weak var localView: RTCEAGLVideoViewWrapper!
     
+    
     var localVideoTrack: RTCVideoTrackWrapper!
     var remoteVideoTrack: RTCVideoTrackWrapper!
     
@@ -62,6 +63,10 @@ class VideoViewController: UIViewController, PhoneCallDelegate {
         }
         self.disconnectCalled = false
     }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true;
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -96,7 +101,16 @@ class VideoViewController: UIViewController, PhoneCallDelegate {
 
         self.remoteVideoTrack = nil
         self.remoteView.renderFrame(nil)
-        self.navigationController!.popViewControllerAnimated(true)
+        if let msg = self.errorMessage {
+            let alert = UIAlertController(title: "Error", message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,
+                handler: { (alert: UIAlertAction!) in
+                    self.navigationController!.popViewControllerAnimated(true)
+            }))
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            self.navigationController!.popViewControllerAnimated(true)
+        }
     }
     
     // MARK: PhoneCallDelegate
@@ -132,14 +146,8 @@ class VideoViewController: UIViewController, PhoneCallDelegate {
         NSLog("endCallClick()")
         self.disconnect()
     }
-    
-    // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        NSLog("videoViewController() prepareForSegue()")
-        if self.errorMessage != nil {
-            let viewController = segue.destinationViewController as! ViewController
-            viewController.errorMessage = self.errorMessage
-            self.errorMessage = nil
-        }
+    @IBAction func hangupClicked(sender: UIButton) {
+        NSLog("hangup()")
+        self.disconnect()
     }
 }

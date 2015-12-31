@@ -3,6 +3,15 @@ party licenses. This file contains references to software that is under other
 licenses than the one provided in the LICENSE file in the root of the source
 tree.
 
+* Files governed by third party licenses:
+
+    Governed by https://creativecommons.org/licenses/by/4.0/ (Creative Commons):
+    Originally downloaded from https://design.google.com/icons/
+    No changes were made to the below files
+    TutorialApp/TutorialApp/Images.xcassets/ic_call_end_white_36pt.imageset/ic_call_end_white_36pt_3x.png
+    TutorialApp/TutorialApp/Images.xcassets/ic_call_end_white_36pt.imageset/ic_call_end_white_36pt.png
+    TutorialApp/TutorialApp/Images.xcassets/ic_call_end_white_36pt.imageset/ic_call_end_white_36pt_2x.png
+
 * SwiftyJSON - https://github.com/SwiftyJSON/SwiftyJSON/blob/master/LICENSE 
 
     The MIT License (MIT)
