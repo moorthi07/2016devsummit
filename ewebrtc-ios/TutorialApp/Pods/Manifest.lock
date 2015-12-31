@@ -1,0 +1,25 @@
+PODS:
+  - Alamofire (3.1.4)
+  - Starscream (1.0.2)
+  - SwiftyJSON (2.3.2)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.0)
+  - Starscream (~> 1.0.0)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+
+EXTERNAL SOURCES:
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  SwiftyJSON:
+    :commit: 5f59648a6e9356b26c5cb698ab924fa7d750b6c9
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+SPEC CHECKSUMS:
+  Alamofire: fbc829692f351fa1d8a31dd75fd7f7f56fea31fb
+  Starscream: 40e2c4c1c770d811f24116b8b7dbeb4542c56767
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+
+COCOAPODS: 0.39.0

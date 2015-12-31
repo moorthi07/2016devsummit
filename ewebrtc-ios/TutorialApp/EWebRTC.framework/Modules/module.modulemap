@@ -1,0 +1,10 @@
+framework module EWebRTC {
+  umbrella header "EWebRTC.h"
+
+  export *
+  module * { export * }
+}
+
+module EWebRTC.Swift {
+    header "EWebRTC-Swift.h"
+}
