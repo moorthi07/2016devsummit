@@ -36,8 +36,6 @@ class ViewController: UIViewController, UITextFieldDelegate, PhoneInvitationDele
     private var phone: Phone?
     private var offerCallId: String?
     
-    var errorMessage: String?
-    
     private func resetView() {
         self.getConfigButton.enabled = true
         self.getTokenButton.enabled = true
@@ -90,10 +88,6 @@ class ViewController: UIViewController, UITextFieldDelegate, PhoneInvitationDele
     override func viewWillAppear(animated: Bool) {
         NSLog("ViewController(): viewWillAppear")
         super.viewWillAppear(animated);
-        if self.errorMessage != nil {
-            self.showErrorDialog(self.errorMessage!)
-            self.errorMessage = nil
-        }
     }
 
     override func didReceiveMemoryWarning() {

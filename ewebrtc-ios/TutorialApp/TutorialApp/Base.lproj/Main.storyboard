@@ -214,52 +214,60 @@
             <objects>
                 <viewController id="Xwi-1B-7Lp" customClass="VideoViewController" customModule="TutorialApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="AA5-Xc-sNA"/>
-                        <viewControllerLayoutGuide type="bottom" id="eDj-4g-BwF"/>
+                        <viewControllerLayoutGuide type="top" id="uPc-ge-xJQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="elU-ot-Oqo"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hFQ-ab-iPf">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="0SI-HB-yQv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GRH-5p-2rd" userLabel="Remote View" customClass="RTCEAGLVideoView">
-                                <rect key="frame" x="-3" y="22" width="605" height="557"/>
-                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JHq-JY-KhE" userLabel="Remote View" customClass="RTCEAGLVideoView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="ffp-mD-Lvx" userLabel="Local View" customClass="RTCEAGLVideoView">
-                                <rect key="frame" x="435" y="455" width="120" height="120"/>
+                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WdO-mH-cW2" userLabel="Local View" customClass="RTCEAGLVideoView">
+                                <rect key="frame" x="227" y="470" width="120" height="120"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="ZYB-cD-V1J"/>
-                                    <constraint firstAttribute="height" constant="120" id="xdS-4g-WiG"/>
+                                    <constraint firstAttribute="height" constant="120" id="Imc-NA-NlQ"/>
+                                    <constraint firstAttribute="width" constant="120" id="ct9-cm-SnD"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6Z-AT-Do0">
-                                <rect key="frame" x="272" y="285" width="56" height="30"/>
-                                <state key="normal" title="End Call">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="endCallClick:" destination="Xwi-1B-7Lp" eventType="touchUpInside" id="a5d-Qo-HB1"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4i7-2R-1na" userLabel="Button Container View">
+                                <rect key="frame" x="20" y="254" width="40" height="160"/>
+                                <subviews>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRR-TB-20o" userLabel="Hangup Button">
+                                        <rect key="frame" x="0.0" y="120" width="40" height="40"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" image="ic_call_end_white_36pt">
+                                            <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="hangupClicked:" destination="Xwi-1B-7Lp" eventType="touchUpInside" id="B3a-7m-HsB"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="X18-KU-E21"/>
+                                    <constraint firstAttribute="height" constant="160" id="mCM-qV-Lha"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="eDj-4g-BwF" firstAttribute="top" secondItem="ffp-mD-Lvx" secondAttribute="bottom" constant="25" id="MJP-x6-O8B"/>
-                            <constraint firstItem="eDj-4g-BwF" firstAttribute="top" secondItem="y6Z-AT-Do0" secondAttribute="bottom" constant="45" id="MrA-pO-4eN"/>
-                            <constraint firstItem="GRH-5p-2rd" firstAttribute="leading" secondItem="hFQ-ab-iPf" secondAttribute="leadingMargin" id="beF-9u-2K2"/>
-                            <constraint firstItem="y6Z-AT-Do0" firstAttribute="leading" secondItem="hFQ-ab-iPf" secondAttribute="leadingMargin" constant="45" id="hum-C3-Ge4"/>
-                            <constraint firstItem="eDj-4g-BwF" firstAttribute="top" secondItem="GRH-5p-2rd" secondAttribute="bottom" id="jPy-db-jxh"/>
-                            <constraint firstItem="eDj-4g-BwF" firstAttribute="top" secondItem="GRH-5p-2rd" secondAttribute="bottom" id="jnz-wE-gYy"/>
-                            <constraint firstItem="GRH-5p-2rd" firstAttribute="top" secondItem="AA5-Xc-sNA" secondAttribute="bottom" id="qL4-Vn-mUi"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ffp-mD-Lvx" secondAttribute="trailing" constant="25" id="t0l-KJ-Xdz"/>
-                            <constraint firstItem="GRH-5p-2rd" firstAttribute="top" secondItem="AA5-Xc-sNA" secondAttribute="bottom" id="zJ2-cs-UQR"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="GRH-5p-2rd" secondAttribute="trailing" id="zpC-EL-58G"/>
+                            <constraint firstItem="JHq-JY-KhE" firstAttribute="top" secondItem="0SI-HB-yQv" secondAttribute="top" id="7DE-PZ-5B5"/>
+                            <constraint firstItem="JHq-JY-KhE" firstAttribute="leading" secondItem="0SI-HB-yQv" secondAttribute="leading" id="9IC-xK-GCQ"/>
+                            <constraint firstAttribute="trailing" secondItem="WdO-mH-cW2" secondAttribute="trailing" constant="28" id="R4I-fv-JAg"/>
+                            <constraint firstItem="4i7-2R-1na" firstAttribute="leading" secondItem="0SI-HB-yQv" secondAttribute="leading" constant="20" id="hCR-cc-aft"/>
+                            <constraint firstAttribute="trailing" secondItem="JHq-JY-KhE" secondAttribute="trailing" id="jmS-93-E8a"/>
+                            <constraint firstAttribute="centerY" secondItem="4i7-2R-1na" secondAttribute="centerY" id="mwp-8w-rkY"/>
+                            <constraint firstItem="elU-ot-Oqo" firstAttribute="top" secondItem="WdO-mH-cW2" secondAttribute="bottom" constant="30" id="z93-ic-nkM"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="localView" destination="ffp-mD-Lvx" id="xw5-zi-yek"/>
-                        <outlet property="remoteView" destination="GRH-5p-2rd" id="CHN-uS-8r5"/>
+                        <outlet property="localView" destination="WdO-mH-cW2" id="dMP-TZ-D9e"/>
+                        <outlet property="remoteView" destination="JHq-JY-KhE" id="LPA-e8-1jD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xx8-ww-sWf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -285,5 +293,8 @@
             <point key="canvasLocation" x="268" y="269"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_call_end_white_36pt" width="36" height="36"/>
+    </resources>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
