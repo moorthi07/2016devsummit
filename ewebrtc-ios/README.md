@@ -155,9 +155,9 @@ let dhsService = DhsService(fqdn: DHS_FQDN)
 ```Swift
 dhsService.getConfig(
     { (configData: ConfigData) in
-      // handle configuration data
+          // handle configuration data
     } , errorCallback: { (error: NSError?) in
-      // handle error
+        // handle error
     }
 )
 
@@ -169,9 +169,10 @@ OAuth token from the DHS, which you will then use to create a Phone object.
 var phone: Phone? = nil
 dhsService.getToken(
     { (token: OAuthToken) in
+        self.token = token
         phone = Phone(fqdn: "https://api.att.com", token: token)
     }, errorCallback: { (error: NSError?) in
-        self.handleNSError(error)
+        // handle error
     }
 )
 
@@ -207,15 +208,15 @@ let yourCallDelegate = YourCallDelegate()
 phone.callDelegate = yourCallDelegate
 ```
 
-You can now log in using the phone instance. After you successfully log in, you
-must start polling for events":
+You may now log in using the phone instance. After you have successfully logged
+in, you must start polling for events:
 
 ```Swift
 let userId = "Alice"
-self.phone?.login(userId,
+phone.login(userId,
     successCallback: { () in
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let sessionId = self.phone!.getActiveSessionId()
+        let sessionId = phone.getActiveSessionId()
         appDelegate.startPolling(self.token!, sessionId: sessionId!)
         // any other code
     }, errorCallback: { (error: NSError?) in
@@ -258,14 +259,10 @@ phone.invitationDelegate = yourInvitationDelegate
 ```
 
 ## Further Information
-1. AT&T Developer Platform
-https://developer.att.com
+1. [AT&T Developer Platform](https://developer.att.com)
 
-2. Enhanced WebRTC API
-https://developer.att.com/enhanced-webrtc
+2. [Enhanced WebRTC API](https://developer.att.com/enhanced-webrtc)
 
-3. IOS Sample
-https://github.com/attdevsupport/2016devsummit/ewebrtc-IOS/TutorialApp/
+3. [IOS Sample](https://github.com/attdevsupport/2016devsummit/ewebrtc-IOS/TutorialApp/)
 
-4. JavaScript SDK
-https://developer.att.com/enhanced-webrtc/sdk
+4. [JavaScript SDK](https://developer.att.com/enhanced-webrtc/sdk)
