@@ -239,8 +239,8 @@ let destination = "sip:Bob@example.com"
 
 ### Receiving a call
 
-In order to receive a call, you must create implement  PhoneInvitationDelegate
-protocol and assign the implemented class to the phone instance:
+In order to receive a call, you must implement PhoneInvitationDelegate protocol
+and assign the implemented class to the phone instance:
 
 ```Swift
 class YourInvitationDelegate : PhoneCallDelegate {
