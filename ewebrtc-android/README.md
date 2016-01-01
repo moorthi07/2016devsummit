@@ -109,9 +109,9 @@ The following example assumes that you are using Android Studio. These instructi
 
   - Utility
 
-- Merge all items in the folder [https://github.com/attdevsupport/2016devsummit/tree/master/ewebrtc-android/app-sample/app/src/main/res/drawable](https://github.com/attdevsupport/2016devsummit/tree/master/ewebrtc-android/app-sample/app/src/main/res/drawable) to your project's **drawable** directory.
+- Merge all items in the folder [https://github.com/attdevsupport/2016devsummit/tree/master/ewebrtc-android/app-sample/app/src/main/res/drawable](https://github.com/attdevsupport/2016devsummit/tree/master/ewebrtc-android/app-sample/app/src/main/res/drawable) to your project's **drawable** & **values**directory.
 
-app->res->src->drawable
+app->res->src->drawable & app->res->src->values
 
 
 - Add the following pre-built layout and fragment files in the folder [https://github.com/attdevsupport/2016devsummit/tree/master/ewebrtc-android/app-sample/app/src/main/res/layout](https://github.com/attdevsupport/2016devsummit/tree/master/ewebrtc-android/app-sample/app/src/main/res/layout) to your project's **layout** directory:
