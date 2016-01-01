@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		860046CE1C348A060037AB7E /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860046CD1C348A060037AB7E /* VideoViewController.swift */; };
 		863A40141C35922E00DCCD9D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863A40131C35922E00DCCD9D /* Pods.framework */; };
-		863A401E1C35E9F800DCCD9D /* EWebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863A401D1C35E9F800DCCD9D /* EWebRTC.framework */; };
-		863A40201C35E9FC00DCCD9D /* EWebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 863A401D1C35E9F800DCCD9D /* EWebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		865D6EC61C36E6CA001322FC /* EWebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865D6EC41C36E6C2001322FC /* EWebRTC.framework */; };
+		865D6EC71C36E6CA001322FC /* EWebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 865D6EC41C36E6C2001322FC /* EWebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		865F89A21C346B5100F3A617 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F89A11C346B5100F3A617 /* AppDelegate.swift */; };
 		865F89A41C346B5100F3A617 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F89A31C346B5100F3A617 /* ViewController.swift */; };
 		865F89A71C346B5100F3A617 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865F89A51C346B5100F3A617 /* Main.storyboard */; };
@@ -27,7 +27,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				863A40201C35E9FC00DCCD9D /* EWebRTC.framework in Embed Frameworks */,
+				865D6EC71C36E6CA001322FC /* EWebRTC.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38,7 +38,7 @@
 		513B69DD512EE42ECB81AB25 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		860046CD1C348A060037AB7E /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		863A40131C35922E00DCCD9D /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
-		863A401D1C35E9F800DCCD9D /* EWebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EWebRTC.framework; sourceTree = "<group>"; };
+		865D6EC41C36E6C2001322FC /* EWebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EWebRTC.framework; sourceTree = "<group>"; };
 		865F899E1C346B5100F3A617 /* TutorialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TutorialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		865F89A11C346B5100F3A617 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		865F89A31C346B5100F3A617 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,8 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				865D6EC61C36E6CA001322FC /* EWebRTC.framework in Frameworks */,
 				863A40141C35922E00DCCD9D /* Pods.framework in Frameworks */,
-				863A401E1C35E9F800DCCD9D /* EWebRTC.framework in Frameworks */,
 				86C2DD601C34B04300D93FD4 /* GLKit.framework in Frameworks */,
 				86C2DD531C34AAF900D93FD4 /* libstdc++.dylib in Frameworks */,
 			);
@@ -70,7 +70,7 @@
 		865F89951C346B5100F3A617 = {
 			isa = PBXGroup;
 			children = (
-				863A401D1C35E9F800DCCD9D /* EWebRTC.framework */,
+				865D6EC41C36E6C2001322FC /* EWebRTC.framework */,
 				865F89A01C346B5100F3A617 /* TutorialApp */,
 				865F899F1C346B5100F3A617 /* Products */,
 				D7EFCD81A5B37F341BBA1CF4 /* Pods */,
