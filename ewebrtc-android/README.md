@@ -87,10 +87,10 @@ The following example assumes that you are using Android Studio. These instructi
 - Permissions
 ```Java
 <uses-permission android:name="android.permission.CAMERA" />
-<uses-permission android:name="android.permission.MODIFY\_AUDIO\_SETTINGS" />
-<uses-permission android:name="android.permission.RECORD\_AUDIO" />
+<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
 <uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.WRITE\_EXTERNAL\_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
 - Add the following Java classes from [https://github.com/attdevsupport/2016devsummit/tree/master/ewebrtc-android/app-sample/app/src/main/java/com/att/devsummit/hackathon](https://github.com/attdevsupport/2016devsummit/tree/master/ewebrtc-android/app-sample/app/src/main/java/com/att/devsummit/hackathon) to your project's **java** directory. Make sure you are preserving the folder structure as shown below:
@@ -117,9 +117,9 @@ app->res->src->drawable
 - Add the following pre-built layout and fragment files in the folder [https://github.com/attdevsupport/2016devsummit/tree/master/ewebrtc-android/app-sample/app/src/main/res/layout](https://github.com/attdevsupport/2016devsummit/tree/master/ewebrtc-android/app-sample/app/src/main/res/layout) to your project's **layout** directory:
 
 ```java
-activity\_rtc.xml
+activity_rtc.xml
 
-overlay\_rtc.xml
+overlay_rtc.xml
 ```
 - Add following dependencies to the **build.gradle** file in your app:
 
@@ -314,9 +314,9 @@ Intent dialIntent = new Intent(getApplicationContext(), RTCActivity.class);
 //
 
 mediaType = MediaType._AUDIO_;
-String phoneNumber = US\_DOMESTIC\_PHONENUMBER\_TO\_DIAL;
+String phoneNumber = US_DOMESTIC_PHONENUMBER_TO_DIAL;
 
-String validPhoneNumber = CLEANED\_TO\_1AAABBBCCCC\_FORMAT;
+String validPhoneNumber = CLEANED_TO_1AAABBBCCCC_FORMAT;
 
 dialIntent.putExtra("DESTINATION", "tel:" + validPhoneNumber);
 dialIntent.putExtra("MEDIATYPE", mediaType);
@@ -328,8 +328,8 @@ startActivity(dialIntent);
 
 //
 
-mediaType = MediaType._AUDIO\_VIDEO_;
-String idToCall = CALLEE\_ACCOUNT\_ID;
+mediaType = MediaType._AUDIO_VIDEO_;
+String idToCall = CALLEE_ACCOUNT_ID;
 dialIntent.putExtra("DESTINATION", "sip:" + idToCall + '@' + calleeDomain);
 
 dialIntent.putExtra("MEDIATYPE", mediaType);
