@@ -14,7 +14,6 @@ public class ConfigData {
     private String appE911idUrl;
     private List<String> virtualNumbersPool = new ArrayList<String>();
     private String ewebrtcDomain;
-    //private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * @return The apiEndpoint
@@ -141,13 +140,5 @@ public class ConfigData {
     public void setEwebrtcDomain(String ewebrtcDomain) {
         this.ewebrtcDomain = ewebrtcDomain;
     }
-
-        /*public Map<String, Object> getAdditionalProperties() {
-            return this.additionalProperties;
-        }
-
-        public void setAdditionalProperty(String name, Object value) {
-            this.additionalProperties.put(name, value);
-        }*/
 
 }

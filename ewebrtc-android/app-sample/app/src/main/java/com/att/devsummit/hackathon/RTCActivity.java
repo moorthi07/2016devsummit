@@ -75,11 +75,10 @@ public class RTCActivity extends WebRTCActivity {
         fragmentDevice = new DeviceSelectionFragment();
         IntentFilter filter = new IntentFilter();
         filter.addAction("WEBRTC_ACTION");
-        uiInitialize();
     }
 
     public void changeDevice(int which) {
-        int backgroundId = R.drawable.speaker_off;
+        int backgroundId;
 
         fragmentDevice.selectedPosition = which;
         Log.d(TAG, "Which value " + which);
@@ -90,7 +89,6 @@ public class RTCActivity extends WebRTCActivity {
                 Log.d(TAG, "Speak On clicked");
                 break;
             case 1:
-                audioManager.setBluetoothScoOn(false);
                 if (audioManager.isWiredHeadsetOn()) {
                     backgroundId = R.drawable.headset;
                 } else {
@@ -115,10 +113,6 @@ public class RTCActivity extends WebRTCActivity {
         fragmentDevice.show(getFragmentManager(), "Device");
     }
 
-    private void uiInitialize() {
-        //TODO: initialize all the UI elements here
-    }
-
     @Override
     protected void close() {
         runOnUiThread(new Runnable() {
@@ -140,7 +134,6 @@ public class RTCActivity extends WebRTCActivity {
         super.onCreate(savedInstanceState);
 
         // Full screen
-        // TODO (pk9069): move to the xml layout file
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -252,13 +245,11 @@ public class RTCActivity extends WebRTCActivity {
     public void onPause() {
         super.onPause();
         videoView.onPause();
-        // TODO (pk9069): phone.hold()
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        // TODO (pk9069): phone.resume()
     }
 
     @Override
@@ -273,8 +264,6 @@ public class RTCActivity extends WebRTCActivity {
 
     @Override
     public void onCallConnecting(MediaType mediaType) {
-
-        //TODO : need to find a suitable place to add this
         if (mediaType.equals(MediaType.AUDIO)) {
             speakerOff();
             ImageButton speakerButton = (ImageButton) findViewById(R.id.speaker_button);
@@ -311,9 +300,7 @@ public class RTCActivity extends WebRTCActivity {
     public void onError(final PhoneErrorType type, final String error) {
         super.onError(type, error);
         String message = "error type " + type;
-
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-
     }
 
     @Override

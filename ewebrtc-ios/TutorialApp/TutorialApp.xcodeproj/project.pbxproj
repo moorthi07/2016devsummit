@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		860046CE1C348A060037AB7E /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860046CD1C348A060037AB7E /* VideoViewController.swift */; };
 		863A40141C35922E00DCCD9D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863A40131C35922E00DCCD9D /* Pods.framework */; };
+		863A401E1C35E9F800DCCD9D /* EWebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863A401D1C35E9F800DCCD9D /* EWebRTC.framework */; };
+		863A40201C35E9FC00DCCD9D /* EWebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 863A401D1C35E9F800DCCD9D /* EWebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		865F89A21C346B5100F3A617 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F89A11C346B5100F3A617 /* AppDelegate.swift */; };
 		865F89A41C346B5100F3A617 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F89A31C346B5100F3A617 /* ViewController.swift */; };
 		865F89A71C346B5100F3A617 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865F89A51C346B5100F3A617 /* Main.storyboard */; };
 		865F89A91C346B5100F3A617 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 865F89A81C346B5100F3A617 /* Assets.xcassets */; };
 		865F89AC1C346B5100F3A617 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865F89AA1C346B5100F3A617 /* LaunchScreen.storyboard */; };
-		86A9228E1C358B380008F24C /* EWebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A9228C1C358B230008F24C /* EWebRTC.framework */; };
-		86A9228F1C358B380008F24C /* EWebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 86A9228C1C358B230008F24C /* EWebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		86C2DD531C34AAF900D93FD4 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C2DD521C34AAF900D93FD4 /* libstdc++.dylib */; };
 		86C2DD601C34B04300D93FD4 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C2DD5B1C34AFBA00D93FD4 /* GLKit.framework */; };
 /* End PBXBuildFile section */
@@ -27,7 +27,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				86A9228F1C358B380008F24C /* EWebRTC.framework in Embed Frameworks */,
+				863A40201C35E9FC00DCCD9D /* EWebRTC.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38,6 +38,7 @@
 		513B69DD512EE42ECB81AB25 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		860046CD1C348A060037AB7E /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		863A40131C35922E00DCCD9D /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
+		863A401D1C35E9F800DCCD9D /* EWebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EWebRTC.framework; sourceTree = "<group>"; };
 		865F899E1C346B5100F3A617 /* TutorialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TutorialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		865F89A11C346B5100F3A617 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		865F89A31C346B5100F3A617 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,7 +46,6 @@
 		865F89A81C346B5100F3A617 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		865F89AB1C346B5100F3A617 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		865F89AD1C346B5100F3A617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		86A9228C1C358B230008F24C /* EWebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EWebRTC.framework; sourceTree = "<group>"; };
 		86C2DD521C34AAF900D93FD4 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		86C2DD5B1C34AFBA00D93FD4 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		925C5FDFD0016C1455290583 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,9 +58,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				863A40141C35922E00DCCD9D /* Pods.framework in Frameworks */,
+				863A401E1C35E9F800DCCD9D /* EWebRTC.framework in Frameworks */,
 				86C2DD601C34B04300D93FD4 /* GLKit.framework in Frameworks */,
 				86C2DD531C34AAF900D93FD4 /* libstdc++.dylib in Frameworks */,
-				86A9228E1C358B380008F24C /* EWebRTC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +70,7 @@
 		865F89951C346B5100F3A617 = {
 			isa = PBXGroup;
 			children = (
-				86A9228C1C358B230008F24C /* EWebRTC.framework */,
+				863A401D1C35E9F800DCCD9D /* EWebRTC.framework */,
 				865F89A01C346B5100F3A617 /* TutorialApp */,
 				865F899F1C346B5100F3A617 /* Products */,
 				D7EFCD81A5B37F341BBA1CF4 /* Pods */,
@@ -156,6 +156,7 @@
 				TargetAttributes = {
 					865F899D1C346B5100F3A617 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 9H249CG757;
 					};
 				};
 			};
@@ -360,6 +361,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_MODULES_AUTOLINK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -376,6 +379,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.att.TutorialApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				STRIP_BITCODE_FROM_COPIED_FILES = NO;
 			};
 			name = Debug;
@@ -386,6 +390,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_MODULES_AUTOLINK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -402,6 +408,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.att.TutorialApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				STRIP_BITCODE_FROM_COPIED_FILES = NO;
 			};
 			name = Release;

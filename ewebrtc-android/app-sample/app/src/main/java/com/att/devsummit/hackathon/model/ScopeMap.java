@@ -6,7 +6,6 @@ public class ScopeMap {
     private String VIRTUALNUMBER;
     private String ACCOUNTID;
     private String E911;
-    //private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * @return The MOBILENUMBER
@@ -63,13 +62,5 @@ public class ScopeMap {
     public void setE911(String E911) {
         this.E911 = E911;
     }
-
-    /*public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }*/
 
 }
