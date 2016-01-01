@@ -12,6 +12,20 @@ tree.
     TutorialApp/TutorialApp/Images.xcassets/ic_call_end_white_36pt.imageset/ic_call_end_white_36pt.png
     TutorialApp/TutorialApp/Images.xcassets/ic_call_end_white_36pt.imageset/ic_call_end_white_36pt_2x.png
 
+    Governed by https://swift.org/LICENSE.txt (Apache License + Runtime Library Exception):
+    TutorialApp/EWebRTC.framework/Frameworks/libswiftAVFoundation.dylib
+    TutorialApp/EWebRTC.framework/Frameworks/libswiftContacts.dylib
+    TutorialApp/EWebRTC.framework/Frameworks/libswiftCore.dylib
+    TutorialApp/EWebRTC.framework/Frameworks/libswiftCoreAudio.dylib
+    TutorialApp/EWebRTC.framework/Frameworks/libswiftCoreGraphics.dylib
+    TutorialApp/EWebRTC.framework/Frameworks/libswiftCoreImage.dylib
+    TutorialApp/EWebRTC.framework/Frameworks/libswiftCoreMedia.dylib
+    TutorialApp/EWebRTC.framework/Frameworks/libswiftDarwin.dylib
+    TutorialApp/EWebRTC.framework/Frameworks/libswiftDispatch.dylib
+    TutorialApp/EWebRTC.framework/Frameworks/libswiftFoundation.dylib
+    TutorialApp/EWebRTC.framework/Frameworks/libswiftObjectiveC.dylib
+    TutorialApp/EWebRTC.framework/Frameworks/libswiftUIKit.dylib
+
 * SwiftyJSON - https://github.com/SwiftyJSON/SwiftyJSON/blob/master/LICENSE 
 
     The MIT License (MIT)
