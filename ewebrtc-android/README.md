@@ -131,7 +131,7 @@ compile 'com.squareup.retrofit:retrofit:1.9.0'
 
 compile 'de.greenrobot:eventbus:2.4.0'
 
-compile project(':webrtc-sdk')
+compile project(':ewebrtc-sdk')
 ```
 
 After completing above steps, the set-up of your Android project should look like the following:
