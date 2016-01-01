@@ -54,7 +54,7 @@ the following steps on the computer that contains your development environment:
   - Configure this instance with the App Key and App Secret that you obtained
     from the AT&T Developer Portal in the previous step.
   - Configure the host and port. Use a hostname or IP address that is accessible
-    to your Android test phone.
+    to your iOS test phone.
   - Install the node dependencies.
   - Start the Node server.
 
@@ -62,11 +62,9 @@ The pre-built Server App exposes an HTTPS endpoint for Access Token generation,
 and a WebSocket endpoint to publish Call Management events.
 
 TIP: By default, this Server App starts at
-[https://127.0.0.1:9001](https://127.0.0.1:9001). This is good only for testing
-with Android Emulator. To test with a real device, select a hostname or IP
-address that is accessible to your test phone. This hostname or IP address
-should also be configured in 'CORS Domains' section of your Developer Portal
-Account.
+[https://127.0.0.1:9001](https://127.0.0.1:9001). However, this address is
+inaccessible to a real device. To test with a real device, select a hostname or
+IP address that is accessible to your test phone.
 
 For more information on configuring and starting the pre-built Server App, please refer to:
 https://github.com/attdevsupport/2016devsummit/tree/master/ewebrtc-ios/node-sample.
