@@ -138,6 +138,7 @@ After completing above steps, the set-up of your Android project should look lik
 
  ![](images/studio.png?raw=true)
 
+Note: Make sure you remove the package name "com.att.devsummit.hackathon" when copying the source files to your new project.
 
 # Code to make a Call
 
