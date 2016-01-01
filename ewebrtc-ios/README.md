@@ -73,10 +73,10 @@ https://github.com/attdevsupport/2016devsummit/tree/master/ewebrtc-ios/node-samp
 
 The following example assumes that you are using Xcode. 
 
-**Note** : The iOS library for Enhanced WebRTC has been tested on iOS version
-9.0 and higher. The library has been compiled against the ARM64 architecture, so
-an IPhone 5s or newer is required. Running this tutorial app will not work on a
-simulator.
+**Note** : The iOS library for Enhanced WebRTC requires at least iOS version 9.2
+and Xcode version 7.2. The library has been compiled against the ARM64
+architecture, so an IPhone 5s (iOS v9.2+) or newer is required. Running this
+tutorial app will not work on a simulator.
 
 The tutorial app has been configured to run as-is, so simply opening the
 TutorialApp.xcworkspace directory in the
