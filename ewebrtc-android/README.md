@@ -271,7 +271,7 @@ accessToken = ot.getAccessToken();
 Associates the user-selected Id with the AccessToken
 
 ```java
-Phone phone = Phone._getPhone_(getApplicationContext());
+Phone phone = Phone.getPhone(getApplicationContext());
 
 // userId is collected from the UI
 
@@ -308,7 +308,7 @@ phone.login(accessToken);
 Use the following snippet to dial audio or video call. This code is used in your App's 'dial' button click handler method.
 
 ```java
-MediaType mediaType = MediaType._AUDIO_;
+MediaType mediaType = MediaType.AUDIO;
 Intent dialIntent = new Intent(getApplicationContext(), RTCActivity.class);
 
 // Calling a US-Domestic phone number
