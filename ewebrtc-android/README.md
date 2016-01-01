@@ -226,6 +226,7 @@ If your domain is mydomain.com, and your user selected user1as the Account ID, t
 String domainName;
 
 ```java
+ApiRequest apiRequest = new ApiRequest();
 apiRequest.getConfig(new SdkCallbacks.SuccessCallback() {
     @Override
     public void onSuccess(Object object) {
