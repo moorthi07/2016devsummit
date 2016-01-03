@@ -3,9 +3,7 @@
 */
 
 'use strict';
-var myDHS = 'http://192.168.1.38:9000',
-  api_endpoint = 'https://api.att.com/RTC/v1/',
-  associateUser_endpoint = 'userIds/',
+var myDHS = 'https://127.0.0.1:9001',
   config,
   virtual_numbers,
   ewebrtc_domain;
@@ -76,85 +74,3 @@ function mobileNumberLogin() {
       '&scope=WEBRTCMOBILE&redirect_uri=' + window.location.href + '/consent.html';
   }
 }
-
-// ### Associate User
-function associateUser(userId, accessToken, success, error) {
-  var xhrAssociateUser = new XMLHttpRequest();
-
-  xhrAssociateUser.open('PUT', api_endpoint + associateUser_endpoint + userId);
-  xhrAssociateUser.setRequestHeader("Content-Type", "application/json");
-  xhrAssociateUser.setRequestHeader("Authorization", "Bearer " + accessToken);
-  xhrAssociateUser.onreadystatechange = function () {
-    if (xhrAssociateUser.readyState === 4) {
-      if (xhrAssociateUser.status === 204) {
-        success();
-      } else {
-        error(xhrAssociateUser.responseText);
-      }
-    }
-  };
-  xhrAssociateUser.send();
-}
-
-// ### createSession
-function createSession(accessToken, success, error) {
-  var xhrCreateSession = new XMLHttpRequest();
-
-  xhrCreateSession.open('POST', api_endpoint + 'sessions');
-  xhrCreateSession.setRequestHeader("Content-Type", "application/json");
-  xhrCreateSession.setRequestHeader("Accept", "application/json");
-  xhrCreateSession.setRequestHeader("x-Arg", "ClientSDK=WebRTCTestAppJavascript1");
-  xhrCreateSession.setRequestHeader("x-e911Id", "");
-  xhrCreateSession.setRequestHeader("Authorization", "Bearer " + accessToken);
-  xhrCreateSession.onreadystatechange = function () {
-    if (xhrCreateSession.readyState === 4) {
-      if (xhrCreateSession.status === 201) {
-        success(xhrCreateSession.getResponseHeader('Location'));
-      } else {
-        error(xhrCreateSession.responseText);
-      }
-    }
-  };
-  xhrCreateSession.send(JSON.stringify({"session":{"mediaType":"dtls-srtp","ice":"true","services":["ip_voice_call","ip_video_call"]}}));
-}
-
-
-// ### logout Session
-function logout(sessionId, accessToken, success, error) {
-  var xhrLogoutSession = new XMLHttpRequest();
-
-  xhrLogoutSession.open('DELETE', api_endpoint + 'sessions/'+sessionId);
-  xhrLogoutSession.setRequestHeader("Content-Type", "application/json");
-  xhrLogoutSession.setRequestHeader("Accept", "application/json");
-  xhrLogoutSession.setRequestHeader("Authorization", "Bearer " + accessToken);
-  xhrLogoutSession.onreadystatechange = function () {
-    if (xhrLogoutSession.readyState === 4) {
-      if (xhrLogoutSession.status === 200) {
-        success();
-      } else {
-        error(xhrLogoutSession.responseText);
-      }
-    }
-  };
-  xhrLogoutSession.send();
-}
-
-//LongPolling
-function webSocket(token, sessionId, success, error) {
-  var xhrPolling = new XMLHttpRequest();
-  xhrPolling.open('POST', myDHS + "/websocket");
-  xhrPolling.setRequestHeader("Content-Type", "application/json");
-  xhrPolling.setRequestHeader("Accept", "application/json");
-  xhrPolling.onreadystatechange = function () {
-    if (xhrPolling.readyState === 4) {
-      if (xhrPolling.status === 200) {
-        success(xhrPolling.responseText);
-      } else {
-        error();
-        console.error(xhrPolling.responseText);
-      }
-    }
-  };
-  xhrPolling.send(JSON.stringify({'sessionId':sessionId, 'token':token}));
-}
-

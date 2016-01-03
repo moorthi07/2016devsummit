@@ -1,41 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <script type="application/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script type="application/javascript" src="js/router.js"></script>
-    <script type="application/javascript" src="js/utils.js"></script>
-    <script type="application/javascript" src="js/main.js"></script>
-    <link type="text/css" rel="stylesheet" href="css/style.css"/>
-    <title></title>
+  <meta charset="utf-8">
+  <title>ATT Enhanced WebRTC</title>
+  <meta name="description" content="Enhanced WebRTC Demo">
+  <meta name="author" content="ATT">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/app.css">
+  <style type="text/css">
+    body {
+      padding-top: 80px;
+    }
+  </style>
 </head>
-<div id="wrapper">
-    <div class="eachBlock">
-        <button id="createToken">Create Token</button>
-        <label id="accessToken"></label>
+<body>
+<header id="app-header">
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <ul class="nav navbar-nav col-sm-offset-1">
+          <li><a>ATT Enhanced WebRTC v<em id="version"></em></a></li>
+          <li><a class="pointer" href="tutorial/" target="_blank">Tutorial</a></li>
+          <li><a class="pointer" href="api-docs/" target="_blank">API Docs</a></li>
+          <li><a class="pointer" href="recipes/" target="_blank">Recipes</a></li>
+          <li><a><span id="username" style="display: none">Guest</span></a></li>
+          <li><a class="pointer" id="update_address" style="display: none" onclick="updateAddress(event);"><span>Update E911 Address</span></a>
+          </li>
+          <li><a class="pointer" id="logout" style="display: none" onclick="logout();"><span>Logout</span></a></li>
+        </ul>
+      </div>
     </div>
-
-    <div class="eachBlock">
-        <input type="text" id="userId" placeholder="userId" /><label id="domainName"></label>
-        <button  id="associateUser" disabled>Associate User</button>
+  </nav>
+</header>
+<section id="main" role="main" class="clearfix">
+  <div class="container">
+    <div id="message" class="alert alert-info clearfix"></div>
+    <div id="errormessage" class="alert alert-danger"></div>
+    <div id="view" class="clearfix">
+      <h3 class="text-center">&nbsp;&nbsp;&nbsp;Loading...&nbsp;&nbsp;&nbsp;</h3>
+      <br/>
+      <br/>
+      <br/>
     </div>
-    <div class="eachBlock">
-        <button id="createSession" disabled>Create Session</button>
-        <label id="sessionId"></label>
-    </div>
-    <div class="eachBlock">
-        <button id="logout" disabled>logout</button>
-    </div>
-    <div class="eachBlock">
-        <button id="webSocket" disabled>web Socket</button>
-    </div>
-    
-    <div id="websocketdata"></div>
-    <div id="events">
-
-    </div>
-</div>
-</html>
-
+  </div>
+</section>
+<script src="js/vendor/att.phonenumber.js"></script>
+<script type="text/javascript" src="js/router.js"></script>
+<script type="text/javascript" src="https://www.attwebrtc.com/ewebrtc/ewebrtc-sdk.min.js"></script><script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/sample.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 </body>
 </html>

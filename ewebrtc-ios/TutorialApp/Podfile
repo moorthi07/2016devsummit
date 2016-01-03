@@ -1,6 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
+workspace ‘TutorialApp’
 
 pod 'Starscream', '~> 1.0.0'
 pod 'Alamofire', '~> 3.0'
