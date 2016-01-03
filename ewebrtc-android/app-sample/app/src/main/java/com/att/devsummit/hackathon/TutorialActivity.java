@@ -24,6 +24,15 @@ import com.att.webrtcsdk.phone.PhoneEventAdapter;
 import com.att.webrtcsdk.phone.PhoneEventListener;
 
 
+import com.gimbal.android.BeaconSighting;
+import com.gimbal.android.Gimbal;
+import com.gimbal.android.PlaceEventListener;
+import com.gimbal.android.PlaceManager;
+import com.gimbal.android.Visit;
+import com.gimbal.android.BeaconManager;
+import com.gimbal.android.BeaconEventListener;
+
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -41,6 +50,10 @@ public class TutorialActivity extends AppCompatActivity {
     private String access_token;
     private InvitationEvent invitationEvent;
     private String TAG = TutorialActivity.class.getSimpleName();
+
+    private PlaceEventListener placeEventListener;
+    private BeaconManager manager;
+    private BeaconEventListener beaconEventListener;
 
 
     @Override
@@ -61,6 +74,39 @@ public class TutorialActivity extends AppCompatActivity {
         userId = (EditText) findViewById(R.id.userId);
         phone_number = (EditText) findViewById(R.id.phone_number);
 
+        Gimbal.setApiKey(this.getApplication(), "98129cb6-7162-40b0-a8ee-a7200deb10c1");
+
+
+        beaconEventListener = new BeaconEventListener() {
+            @Override
+            public void onBeaconSighting(BeaconSighting beaconSighting) {
+                super.onBeaconSighting(beaconSighting);
+
+            }
+        };
+
+        manager = new BeaconManager();
+        manager.addListener(beaconEventListener);
+        manager.startListening();
+
+
+        placeEventListener = new PlaceEventListener() {
+
+            @Override
+            public void onVisitStart(Visit visit) {
+                visit.getPlace();
+            }
+
+            @Override
+            public void onVisitEnd(Visit visit) {
+                visit.getPlace();
+            }
+        };
+
+        PlaceManager placeManager = PlaceManager.getInstance();
+        placeManager.addListener(placeEventListener);
+
+        placeManager.startMonitoring();
 
         phoneEventListener = new PhoneEventAdapter() {
             @Override
