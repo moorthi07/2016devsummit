@@ -314,15 +314,18 @@
     console.log('HTTP web server listening on port ' + http_port);
   });
 
-  if (!is_heroku_env) {
-    httpsServer =  https.createServer({
-      key: privateKey,
-      cert: certificate
-    }, app).listen(https_port , function () {
-
-      console.log('HTTPS web server listening on port ' + https_port);
-    });
-  }
+     httpServer = http.createServer(app).listen(https_port, function () {
+    console.log('HTTP web server listening on port ' + https_port);
+  });
+//  if (!is_heroku_env) {
+//    httpsServer =  https.createServer({
+//      key: privateKey,
+//      cert: certificate
+//    }, app).listen(https_port , function () {
+//
+//      console.log('HTTPS web server listening on port ' + https_port);
+//    });
+//  }
 
 
   function longPoll(msg, socket) {

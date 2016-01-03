@@ -5,3 +5,4 @@ ewebrtc-android/app-sample/.gradle/
 ewebrtc-android/app-sample/app/app.iml
 ewebrtc-android/app-sample/build/intermediates/dex-cache/cache.xml
 ewebrtc-android/app-sample/local.properties
+ewebrtc-android/node-sample/node_modules/

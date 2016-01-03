@@ -44,9 +44,9 @@
   "sandbox": {
     "app_key": "tur1otrgt6vuwmn1u3acpbneefrz688m",
     "app_secret": "gsgnomebtw2coxx13fnlc7qn79k5xdic",
-    "oauth_callback": "https://127.0.0.1:9001/oauth/callback",
-    "app_token_url": "https://127.0.0.1:9001/tokens",
-    "app_e911id_url": "https://127.0.0.1:9001/e911ids",
+    "oauth_callback": "http://127.0.0.1:9001/oauth/callback",
+    "app_token_url": "http://127.0.0.1:9001/tokens",
+    "app_e911id_url": "http://127.0.0.1:9001/e911ids",
     "virtual_numbers_pool": [
       "Please contact your AT&T Representative for a Virtual Number"
     ],
